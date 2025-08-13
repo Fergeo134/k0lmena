@@ -4,33 +4,233 @@ import { BASEURL } from '../config';
 import { pages } from '../hooks/hook';
 import { validateFirstLocator } from '../utils/validations';
 import {
-  inputLabel,
-  buttonSearch,
-  divResult
+  botonSignupLogin,
+  campoNombre,
+  campoMail,
+  nombre,
+  apellido,
+  tempMail,
+  performanceText,
+  password,
+  diaNac,
+  mesNac,
+  yearNac,
+  direccion,
+  pais,
+  estado,
+  ciudad,
+  cp,
+  celular
 } from '../locators/exampleLocators';
 import {
   getByPlaceholderAndClickIt,
   getByPlaceholderAndFillIt,
-  getElementByRole
+  getByText,
+  getElementByRoleAndClickIt,
+  getTextboxAndFill,
+  getByLocator,
+  getAltByText,
+  getByTestId,
+  getByLocatorAndFillIt
 } from '../utils/interactions';
 
-Given("User navigates to MercadoLibre page", async () => {
+Given("El usuario esta en la pagina de automationexercise", async () => {
   for (const page of pages) {
     console.log(`Ejecutando prueba en navegador: ${page.context().browser()?.browserType().name()}`);
     await page.goto(BASEURL);
   }
 });
 
-When('User search for cars options', async function () {
+When('El usuario clickea en el boton de signupLogin', async function () {
   for (const page of pages) {
-    await getByPlaceholderAndClickIt(page, inputLabel);
-    await getByPlaceholderAndFillIt(page, inputLabel, "auto");
-    await page.locator(buttonSearch).click();
+    await page.getByText(botonSignupLogin).click()
   }
 });
 
-Then('It should show all the results according to the search', async function () {
+When('El usuario clickea en el campo nombre e inserta el nombre a utilizar', async function () {
   for (const page of pages) {
-    expect(validateFirstLocator(page, "div", divResult)).toBeTruthy();
+    await getByPlaceholderAndFillIt(page, 'Name', nombre)
   }
 });
+
+When('El usuario clickea en el campo Email Address e inserta la direccion', async function () {
+  for (const page of pages) {
+    await page.locator('[data-qa="signup-email"]').fill(tempMail);
+  }
+});
+
+
+When('El usuario clickea el boton Signup', async function () {
+  for (const page of pages) {
+    await page.locator('[data-qa="signup-button"]').click();
+  }
+});
+
+Then('El usuario se encuentra en la pagina para la carga de informacion de la cuenta', async function () {
+  for (const page of pages) {
+    expect(validateFirstLocator(page, "div", performanceText)).toBeTruthy();
+  }
+});
+
+
+Given("El usuario esta en la pagina de signup de automationexercise", async () => {
+  for (const page of pages) {
+    await expect(page).toHaveURL('https://www.automationexercise.com/signup');
+  }
+});
+
+When('El usuario selecciona la opcion mr', async function () {
+  for (const page of pages) {
+    await getByLocator(page, '#id_gender1')
+    
+  }
+});
+
+When('El usuario ingresa una password', async function () {
+  for (const page of pages) {
+    await getByLocatorAndFillIt(page, '[data-qa="password"]', password);
+  }
+});
+
+When('El usuario inserta la fecha de nacimiento', async function () {
+  for (const page of pages) {
+    await page.locator('#days').selectOption(diaNac);
+    await page.locator('#months').selectOption(mesNac);
+    await page.locator('#years').selectOption(yearNac);
+      }
+});
+
+When('El usuario insterta el nombre', async function () {
+  for (const page of pages) {
+    await getByLocatorAndFillIt(page, '[data-qa="first_name"]', nombre);
+  }
+});
+When('El usuario inserta apellido', async function () {
+  for (const page of pages) {
+    await getByLocatorAndFillIt(page, '[data-qa="last_name"]', apellido);
+  }
+});
+
+When('El usuario inserta direccion', async function () {
+  for (const page of pages) {
+    await getByLocatorAndFillIt(page, '[data-qa="address"]', direccion);
+  }
+});
+
+
+When('El usuario inserta el pais', async function () {
+  for (const page of pages) {
+    await page.locator('#country').selectOption(pais);
+  }
+});
+
+
+When('El usuario inserta el estado', async function () {
+  for (const page of pages) {
+    await getByLocatorAndFillIt(page, '[data-qa="state"]', estado);
+  }
+});
+
+When('El usuario inserta la ciudad', async function () {
+  for (const page of pages) {
+    await getByLocatorAndFillIt(page, '[data-qa="city"]', ciudad);
+  }
+});
+
+When('El usuario inserta el codigo postal', async function () {
+  for (const page of pages) {
+    await getByLocatorAndFillIt(page, '[data-qa="zipcode"]', cp);
+  }
+});
+
+When('El usuario inserta el numero de celular', async function () {
+  for (const page of pages) {
+    await getByLocatorAndFillIt(page, '[data-qa="mobile_number"]', celular);
+  }
+});
+
+
+When('El usuario selecciona el boton de crear cuenta', async function () {
+  for (const page of pages) {
+    await getByLocator(page, '[data-qa="create-account"]');
+  }
+});
+
+When('El usuario visualiza el mensaje "ACCOUNT CREATED!"', async function () {
+  for (const page of pages) {
+    expect(validateFirstLocator(page, "div", "ACCOUNT CREATED!")).toBeTruthy();
+  }
+});
+
+
+When('El usuario selecciona el boton "continuar"', async function () {
+  for (const page of pages) {
+    await page.locator('[data-qa="continue-button"]').click();
+  }
+});
+
+Then('El usuario vuelve a la pagina de inicio', async function () {
+  for (const page of pages) {
+    await expect(page).toHaveURL(BASEURL);
+  }
+});
+
+Then('El usuario visualiza el mensaje "Email Address already exist!"', async function () {
+  for (const page of pages) {
+    expect(validateFirstLocator(page, "div", "Email Address already exist!")).toBeTruthy();
+  }
+});
+
+
+When('El usuario clickea en el campo de login Email Address e inserta la direccion', async function () {
+  for (const page of pages) {
+    await page.locator('[data-qa="login-email"]').fill(tempMail);
+  }
+});
+
+When('El usuario clickea en el campo de login password e inserta la contraseña', async function () {
+  for (const page of pages) {
+    await getByLocatorAndFillIt(page, '[data-qa="login-password"]', password);
+  }
+});
+
+When('El usuario clickea el boton Login', async function () {
+  for (const page of pages) {
+    await page.locator('[data-qa="login-button"]').click();
+  }
+});
+
+When('El usuario selecciona el boton "delete account"', async function () {
+  for (const page of pages) {
+    await page.getByText("delete account").click()
+  }
+});
+
+Then('El usuario visualiza el mensaje "Account Deleted!"', async function () {
+  for (const page of pages) {
+    expect(validateFirstLocator(page, "div", "Account Deleted!")).toBeTruthy();
+  }
+});
+
+
+
+/*
+    // Llenar login con el correo temporal
+    await page.fill('[data-qa="login-email"]', tempMail);
+    await page.fill('[data-qa="login-password"]', password);
+    await page.click('[data-qa="login-button"]');
+
+    // Chequear si se logueó correctamente (botón de delete visible)
+    const deleteButtonVisible = await page.isVisible('a[href="/delete_account"]');
+
+    if (deleteButtonVisible) {
+      // Eliminar cuenta
+      await page.click('a[href="/delete_account"]');
+      await page.waitForSelector('h2:has-text("Account Deleted!")');
+      await page.click('[data-qa="continue-button"]');
+      console.log(`Cuenta con ${tempMail} eliminada antes de crearla nuevamente`);
+    } else {
+      console.log(`No existe cuenta previa con ${tempMail}, se procede al signup`);
+    }
+
+*/

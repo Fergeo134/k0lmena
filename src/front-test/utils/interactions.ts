@@ -107,3 +107,4 @@ export const getByLocator = async (page: Page, locator: LocatorType) => {
 export const getByLocatorAndFillIt = async (page: Page, locator: LocatorType, value: string) => {
   await page.locator(locator).fill(value);
 };
+
