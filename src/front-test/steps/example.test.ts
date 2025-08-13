@@ -180,15 +180,19 @@ Then('El usuario visualiza el mensaje "Email Address already exist!"', async fun
     expect(validateFirstLocator(page, "div", "Email Address already exist!")).toBeTruthy();
   }
 });
-
-
-When('El usuario clickea en el campo de login Email Address e inserta la direccion', async function () {
+Then('El usuario visualiza el mensaje "Your email or password is incorrect!"', async function () {
   for (const page of pages) {
-    await page.locator('[data-qa="login-email"]').fill(tempMail);
+    expect(validateFirstLocator(page, "div", "Your email or password is incorrect!")).toBeTruthy();
   }
 });
 
-When('El usuario clickea en el campo de login password e inserta la contraseña', async function () {
+When('El usuario clickea en el campo de login Email Address e inserta {string}', async function (email) {
+  for (const page of pages) {
+    await page.locator('[data-qa="login-email"]').fill(email);
+  }
+});
+
+When('El usuario clickea en el campo de login password e inserta la contraseña {string}', async function (password) {
   for (const page of pages) {
     await getByLocatorAndFillIt(page, '[data-qa="login-password"]', password);
   }
