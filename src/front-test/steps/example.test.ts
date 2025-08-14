@@ -86,12 +86,25 @@ When('El usuario selecciona la opcion mr', async function () {
   }
 });
 
-When('El usuario ingresa una password', async function () {
+/*When('El usuario ingresa una password', async function () {*/
+When('El usuario ingresa sus datos', async function () {
   for (const page of pages) {
     await getByLocatorAndFillIt(page, '[data-qa="password"]', password);
+    await page.locator('#days').selectOption(diaNac);
+    await page.locator('#months').selectOption(mesNac);
+    await page.locator('#years').selectOption(yearNac);
+    await getByLocatorAndFillIt(page, '[data-qa="first_name"]', nombre);
+    await getByLocatorAndFillIt(page, '[data-qa="last_name"]', apellido);
+    await getByLocatorAndFillIt(page, '[data-qa="address"]', direccion);
+    await page.locator('#country').selectOption(pais);
+    await getByLocatorAndFillIt(page, '[data-qa="state"]', estado);
+    await getByLocatorAndFillIt(page, '[data-qa="city"]', ciudad);
+    await getByLocatorAndFillIt(page, '[data-qa="zipcode"]', cp);
+    await getByLocatorAndFillIt(page, '[data-qa="mobile_number"]', celular);
   }
 });
 
+/*
 When('El usuario inserta la fecha de nacimiento', async function () {
   for (const page of pages) {
     await page.locator('#days').selectOption(diaNac);
@@ -148,7 +161,7 @@ When('El usuario inserta el numero de celular', async function () {
     await getByLocatorAndFillIt(page, '[data-qa="mobile_number"]', celular);
   }
 });
-
+*/
 
 When('El usuario selecciona el boton de crear cuenta', async function () {
   for (const page of pages) {
@@ -158,7 +171,7 @@ When('El usuario selecciona el boton de crear cuenta', async function () {
 
 When('El usuario visualiza el mensaje "ACCOUNT CREATED!"', async function () {
   for (const page of pages) {
-    expect(validateFirstLocator(page, "div", "ACCOUNT CREATED!")).toBeTruthy();
+    await expect(validateFirstLocator(page, "div", "ACCOUNT CREATED!")).toBeTruthy();
   }
 });
 
@@ -177,12 +190,12 @@ Then('El usuario vuelve a la pagina de inicio', async function () {
 
 Then('El usuario visualiza el mensaje "Email Address already exist!"', async function () {
   for (const page of pages) {
-    expect(validateFirstLocator(page, "div", "Email Address already exist!")).toBeTruthy();
+    await expect(validateFirstLocator(page, "div", "Email Address already exist!")).toBeTruthy();
   }
 });
 Then('El usuario visualiza el mensaje "Your email or password is incorrect!"', async function () {
   for (const page of pages) {
-    expect(validateFirstLocator(page, "div", "Your email or password is incorrect!")).toBeTruthy();
+    await expect(validateFirstLocator(page, "div", "Your email or password is incorrect!")).toBeTruthy();
   }
 });
 
@@ -212,7 +225,7 @@ When('El usuario selecciona el boton "delete account"', async function () {
 
 Then('El usuario visualiza el mensaje "Account Deleted!"', async function () {
   for (const page of pages) {
-    expect(validateFirstLocator(page, "div", "Account Deleted!")).toBeTruthy();
+    await expect(validateFirstLocator(page, "div", "Account Deleted!")).toBeTruthy();
   }
 });
 
@@ -226,7 +239,7 @@ When('El usuario clickea el boton "view product" para el producto con ID {string
 
 When('El usuario selecciona cantidad e inserta {string}', async function (Cantidad) {
   for (const page of pages) {
-    page.locator('#quantity').fill(Cantidad);
+    await page.locator('#quantity').fill(Cantidad);
   }
 });
 
@@ -238,7 +251,7 @@ When('El usuario selecciona el boton "add to cart"', async function () {
 
 Then('El usuario visualiza el mensaje "Your product has been added to cart."', async function () {
   for (const page of pages) {
-    expect(validateFirstLocator(page, "div", "Your product has been added to cart.")).toBeTruthy();
+    await expect(validateFirstLocator(page, "div", "Your product has been added to cart.")).toBeTruthy();
   }
 });
 
@@ -288,27 +301,7 @@ When('El usuario clickea el boton "Pay and confirm order"', async function () {
 
 Then('El usuario visualiza el mensaje "Order Placed!"', async function () {
   for (const page of pages) {
-    expect(validateFirstLocator(page, "div", "Order Placed!")).toBeTruthy();
+    await expect(validateFirstLocator(page, "div", "Order Placed!")).toBeTruthy();
   }
 });
 
-/*
-    // Llenar login con el correo temporal
-    await page.fill('[data-qa="login-email"]', tempMail);
-    await page.fill('[data-qa="login-password"]', password);
-    await page.click('[data-qa="login-button"]');
-
-    // Chequear si se logueó correctamente (botón de delete visible)
-    const deleteButtonVisible = await page.isVisible('a[href="/delete_account"]');
-
-    if (deleteButtonVisible) {
-      // Eliminar cuenta
-      await page.click('a[href="/delete_account"]');
-      await page.waitForSelector('h2:has-text("Account Deleted!")');
-      await page.click('[data-qa="continue-button"]');
-      console.log(`Cuenta con ${tempMail} eliminada antes de crearla nuevamente`);
-    } else {
-      console.log(`No existe cuenta previa con ${tempMail}, se procede al signup`);
-    }
-
-*/
