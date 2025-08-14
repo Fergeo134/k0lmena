@@ -86,7 +86,7 @@ When('El usuario selecciona la opcion mr', async function () {
   }
 });
 
-/*When('El usuario ingresa una password', async function () {*/
+
 When('El usuario ingresa sus datos', async function () {
   for (const page of pages) {
     await getByLocatorAndFillIt(page, '[data-qa="password"]', password);
@@ -105,6 +105,12 @@ When('El usuario ingresa sus datos', async function () {
 });
 
 /*
+When('El usuario ingresa una password', async function () {
+for (const page of pages) {
+    await getByLocatorAndFillIt(page, '[data-qa="password"]', password);
+  }
+});
+
 When('El usuario inserta la fecha de nacimiento', async function () {
   for (const page of pages) {
     await page.locator('#days').selectOption(diaNac);

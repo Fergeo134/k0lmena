@@ -21,6 +21,16 @@ Feature: Creación de cuenta en la pagina automationexercise
         Given El usuario esta en la pagina de signup de automationexercise 
         When El usuario selecciona la opcion mr
         And El usuario ingresa sus datos
+        And El usuario selecciona el boton de crear cuenta
+        And El usuario visualiza el mensaje "ACCOUNT CREATED!"
+        And El usuario selecciona el boton "continuar" 
+        Then El usuario vuelve a la pagina de inicio
+
+#caso cargando 1x1 los datos
+#    Scenario: User loads the information of the account
+#        Given El usuario esta en la pagina de signup de automationexercise 
+#        When El usuario selecciona la opcion mr
+#        And El usuario ingresa sus datos
 #        And El usuario ingresa una password
 #        And El usuario inserta la fecha de nacimiento
 #        And El usuario insterta el nombre
@@ -31,8 +41,7 @@ Feature: Creación de cuenta en la pagina automationexercise
 #        And El usuario inserta la ciudad
 #        And El usuario inserta el codigo postal
 #        And El usuario inserta el numero de celular
-        And El usuario selecciona el boton de crear cuenta
-        And El usuario visualiza el mensaje "ACCOUNT CREATED!"
-        And El usuario selecciona el boton "continuar" 
-        Then El usuario vuelve a la pagina de inicio
-
+#        And El usuario selecciona el boton de crear cuenta
+#        And El usuario visualiza el mensaje "ACCOUNT CREATED!"
+#        And El usuario selecciona el boton "continuar" 
+#        Then El usuario vuelve a la pagina de inicio
