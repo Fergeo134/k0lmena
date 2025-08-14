@@ -1,6 +1,4 @@
 export const botonSignupLogin = ' Signup / Login';
-export const campoNombre = 'signup-name';
-export const campoMail = 'signup-email'
 export const nombre = 'Pepito'
 export const apellido = 'Test'
 export const tempMail = 'selip98320@bizmud.com'; /*correo temporal creado con https://temp-mail.org/es */
@@ -15,3 +13,5 @@ export const estado = 'Quebec'
 export const ciudad = 'Quebec'
 export const cp = 'g0a 1h0'
 export const celular = '1599996539'
+export const numTarj = '4602999988887777'
+export const cvcTarj = '012'

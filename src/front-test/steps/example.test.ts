@@ -5,8 +5,6 @@ import { pages } from '../hooks/hook';
 import { validateFirstLocator } from '../utils/validations';
 import {
   botonSignupLogin,
-  campoNombre,
-  campoMail,
   nombre,
   apellido,
   tempMail,
@@ -20,7 +18,9 @@ import {
   estado,
   ciudad,
   cp,
-  celular
+  celular,
+  numTarj,
+  cvcTarj
 } from '../locators/exampleLocators';
 import {
   getByPlaceholderAndClickIt,
@@ -217,6 +217,80 @@ Then('El usuario visualiza el mensaje "Account Deleted!"', async function () {
 });
 
 
+When('El usuario clickea el boton "view product" para el producto con ID {string}', async function (productId) {
+  for (const page of pages) {
+    const viewProductLink = page.locator(`a[href="/product_details/${productId}"]`);
+    await viewProductLink.click();
+  }
+});
+
+When('El usuario selecciona cantidad e inserta {string}', async function (Cantidad) {
+  for (const page of pages) {
+    page.locator('#quantity').fill(Cantidad);
+  }
+});
+
+When('El usuario selecciona el boton "add to cart"', async function () {
+  for (const page of pages) {
+    await page.getByText("add to cart").click()
+  }
+});
+
+Then('El usuario visualiza el mensaje "Your product has been added to cart."', async function () {
+  for (const page of pages) {
+    expect(validateFirstLocator(page, "div", "Your product has been added to cart.")).toBeTruthy();
+  }
+});
+
+
+When('El usuario clickea el boton "view cart"', async function () {
+  for (const page of pages) {
+    await page.getByText("view cart").click()
+  }
+});
+
+When("El usuario es transportado a la pagina view_cart", async () => {
+  for (const page of pages) {
+    await expect(page).toHaveURL('https://www.automationexercise.com/view_cart');
+  }
+});
+
+When('El usuario clickea el boton "Proceed To Checkout"', async function () {
+  for (const page of pages) {
+    await page.getByText("Proceed To Checkout").click()
+  }
+});
+
+When('El usuario clickea el boton "Place Order"', async function () {
+  for (const page of pages) {
+    await page.getByText("Place Order").click()
+  }
+});
+
+When('El usuario inserta los datos de la tarjeta', async function () {
+  for (const page of pages) {
+    await getByLocatorAndFillIt(page, '[data-qa="name-on-card"]', nombre);
+    await getByLocatorAndFillIt(page, '[data-qa="card-number"]', numTarj);
+    await getByLocatorAndFillIt(page, '[data-qa="cvc"]', cvcTarj);
+    await getByLocatorAndFillIt(page, '[data-qa="expiry-month"]', '06');
+    await getByLocatorAndFillIt(page, '[data-qa="expiry-year"]', '2030');
+  }
+});
+
+
+When('El usuario clickea el boton "Pay and confirm order"', async function () {
+  for (const page of pages) {
+    await page.getByText("Pay and confirm order").click()
+  }
+});
+
+
+
+Then('El usuario visualiza el mensaje "Order Placed!"', async function () {
+  for (const page of pages) {
+    expect(validateFirstLocator(page, "div", "Order Placed!")).toBeTruthy();
+  }
+});
 
 /*
     // Llenar login con el correo temporal
