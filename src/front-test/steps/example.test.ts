@@ -20,7 +20,9 @@ import {
   cp,
   celular,
   numTarj,
-  cvcTarj
+  cvcTarj,
+  subject,
+  mensaje
 } from '../locators/exampleLocators';
 import {
   getByPlaceholderAndClickIt,
@@ -311,3 +313,51 @@ Then('El usuario visualiza el mensaje "Order Placed!"', async function () {
   }
 });
 
+When('El usuario clickea en el boton de Contact Us', async function () {
+  for (const page of pages) {
+    await page.getByText("Contact us").click()
+  }
+});
+
+When('El usuario clickea en el campo name e inserta su nombre', async function () {
+  for (const page of pages) {
+    await getByLocatorAndFillIt(page, '[data-qa="name"]', nombre);
+  }
+});
+
+When('El usuario clickea en el campo Email e inserta el mismo', async function () {
+  for (const page of pages) {
+    await getByLocatorAndFillIt(page, '[data-qa="email"]', tempMail);
+  }
+});
+
+
+When('El usuario inserta un motivo del mensaje en el campo subject', async function () {
+  for (const page of pages) {
+    await getByLocatorAndFillIt(page, '[name="subject"]', subject);
+  }
+});
+
+When('El usuario inserta un mensaje', async function () {
+  for (const page of pages) {
+    await getByLocatorAndFillIt(page, '[data-qa="message"]', mensaje);
+  }
+});
+
+When('El usuario selecciona el boton Submit', async function () {
+  for (const page of pages) {
+    await getByLocator(page, '[data-qa="submit-button"]')
+  }
+});
+
+When('El usuario selecciona el boton ok del pop up', async function () {
+  for (const page of pages) {
+    await page.keyboard.press('Enter');
+  }
+});
+
+Then('El usuario visualiza el mensaje "Success! Your details have been submitted successfully"', async function () {
+  for (const page of pages) {
+    await expect(validateFirstLocator(page, "div", "Success! Your details have been submitted successfully")).toBeTruthy();
+  }
+});
