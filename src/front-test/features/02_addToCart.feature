@@ -1,5 +1,5 @@
 @automationexercise @Smoke @addToCart
-Feature: Validación de cuentas en la pagina automationexercise
+Feature: 02 Validación de cuentas en la pagina automationexercise
     
       #este caso solo funciona si el usuario ya tiene una cuenta preexistente y esta logueado
       #este paso carga producto al carrito, puede hacerse con Scenario Overlay para que cargue mas de un producto

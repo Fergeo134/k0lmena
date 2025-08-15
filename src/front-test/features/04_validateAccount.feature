@@ -1,5 +1,5 @@
 @automationexercise @Smoke @validateAccount
-Feature: Validación de cuentas en la pagina automationexercise
+Feature: 04 Validación de cuentas en la pagina automationexercise
     
       #este caso no valida la existencia de la cuenta en si, sino que valida que la cuenta no tenga esa contraseña particular.
        Scenario Outline: validation of existing accounts 

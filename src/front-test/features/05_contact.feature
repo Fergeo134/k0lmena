@@ -1,5 +1,5 @@
 @automationexercise @Smoke @contact
-Feature: Formulario de contacto
+Feature: 05 Formulario de contacto
     
       #este caso no valida la existencia de la cuenta en si, sino que valida que la cuenta no tenga esa contraseña particular.
        Scenario: Validation of the "contact us" function 

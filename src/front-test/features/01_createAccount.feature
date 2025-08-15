@@ -1,5 +1,5 @@
 @automationexercise @Smoke @createAccount
-Feature: Creación de cuenta en la pagina automationexercise
+Feature: 01 Creación de cuenta en la pagina automationexercise
     
     Background: the user navigates up to the loading page
     
