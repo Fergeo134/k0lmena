@@ -34,7 +34,7 @@ BeforeAll(async function () {
 
   for (const browserType of browserTypes) {
     console.log(`Iniciando pruebas en: ${browserType.name()}`);
-    const browser = await browserType.launch({ headless: false });
+    const browser = await browserType.launch({ headless: false, sloMo: 1000 }); //se agrega sloMo ya que si va muy rapido la prueba se traba aveces
     const context = await browser.newContext();
     const page = await context.newPage();
 
