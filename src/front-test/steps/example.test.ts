@@ -186,11 +186,24 @@ Then('El usuario visualiza el mensaje "Your email or password is incorrect!"', a
 
 When('El usuario clickea en el campo de login Email Address e inserta {string}', async function (email) {
   for (const page of pages) {
-    await page.locator('[data-qa="login-email"]').fill(email);
+    const emailToUse = (!email || email.trim() === '') ? tempMail : email;
+    await page.locator('[data-qa="login-email"]').fill(tempMail);
+  }
+});
+When('El usuario clickea en el campo de login Email Address e inserta el mail', async function () {
+  for (const page of pages) {
+    await page.locator('[data-qa="login-email"]').fill(tempMail);
   }
 });
 
-When('El usuario clickea en el campo de login password e inserta la contraseña {string}', async function (password) {
+When('El usuario clickea en el campo de login password e inserta la contraseña {string}', async function (passwordParam) {
+  for (const page of pages) {
+    const passwordToUse = (!passwordParam || passwordParam.trim() === '') ? password : passwordParam;
+    await getByLocatorAndFillIt(page, '[data-qa="login-password"]', password);
+  }
+});
+//revisar si se puede acortar a solo un elemento, se repite la logica pero si se pasa vacio el string no funciona
+When('El usuario clickea en el campo de login password e inserta la contraseña', async function () {
   for (const page of pages) {
     await getByLocatorAndFillIt(page, '[data-qa="login-password"]', password);
   }
@@ -346,5 +359,37 @@ When('El usuario carga un archivo', async function () {
     const filePath = join(process.cwd(), 'src', 'front-test', 'utils', 'sample-file.jpg');
     // carga del archivo
     await fileInput.setInputFiles(filePath);
+  }
+});
+
+
+Then('El usuario visualiza el mensaje "Email Address already exist!"', async function () {
+  for (const page of pages) {
+    await expect(validateFirstLocator(page, "div", "Email Address already exist!")).toBeTruthy();
+  }
+});
+
+
+When('El usuario selecciona el boton "Logout"', async function () {
+  for (const page of pages) {
+    await page.getByText("logout").click()
+  }
+});
+
+Then('El usuario visualiza el boton signupLogin', async function () {
+  for (const page of pages) {
+    await expect(validateFirstLocator(page, "div", botonSignupLogin)).toBeTruthy();
+  }
+});
+
+When("El usuario es transportado a la pagina login", async () => {
+  for (const page of pages) {
+    await expect(page).toHaveURL('https://www.automationexercise.com/');
+  }
+});
+
+When('El usuario va a la pagina home', async function () {
+  for (const page of pages) {
+    await page.getByText("home").click()
   }
 });

@@ -1,7 +1,6 @@
 @automationexercise @Smoke @createAccount
 Feature: Creación de cuenta en la pagina automationexercise
     
-    
     Background: the user navigates up to the loading page
     
         Given El usuario esta en la pagina de automationexercise
@@ -10,8 +9,6 @@ Feature: Creación de cuenta en la pagina automationexercise
         And El usuario clickea en el campo Email Address e inserta la direccion
         And El usuario clickea el boton Signup
         Then El usuario se encuentra en la pagina para la carga de informacion de la cuenta
-
-
 
     #este scenario solo corre ok si no existe la cuenta previamente   
     Scenario: User navigates to automationexercise and selects login

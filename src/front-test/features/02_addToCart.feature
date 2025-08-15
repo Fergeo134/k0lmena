@@ -17,8 +17,6 @@ Feature: Validación de cuentas en la pagina automationexercise
       |3                            |3                |
       |4                            |2                |
 
-
-
       #este scenario se utiliza para hacer el checkout
       Scenario: User checks out
       Given El usuario visualiza el mensaje "Your product has been added to cart."
