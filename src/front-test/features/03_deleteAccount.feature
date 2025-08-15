@@ -1,5 +1,5 @@
 @automationexercise @Smoke @EndAccount
-Feature: 03 logout log in y eliminación de cuenta de la pagina automationexercise
+Feature: 03_logout log in y eliminación de cuenta de la pagina automationexercise
     #este scenario corre ok solo si ya existe una cuenta previamente
 
     Scenario: Loging off from a logged in account
