@@ -1,4 +1,5 @@
 import { expect } from '@playwright/test';
+import { join } from 'path';
 import { Given, When, Then } from '@cucumber/cucumber';
 import { BASEURL } from '../config';
 import { pages } from '../hooks/hook';
@@ -359,5 +360,15 @@ When('El usuario selecciona el boton ok del pop up', async function () {
 Then('El usuario visualiza el mensaje "Success! Your details have been submitted successfully"', async function () {
   for (const page of pages) {
     await expect(validateFirstLocator(page, "div", "Success! Your details have been submitted successfully")).toBeTruthy();
+  }
+});
+
+When('El usuario carga un archivo', async function () {
+  for (const page of pages) {
+    // ruta del archivo relativa a la carpeta de k0lmena
+    const fileInput = page.locator('[name="upload_file"]');
+    const filePath = join(process.cwd(), 'src', 'front-test', 'utils', 'sample-file.jpg');
+    // carga del archivo
+    await fileInput.setInputFiles(filePath);
   }
 });
