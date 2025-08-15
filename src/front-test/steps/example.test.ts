@@ -5,36 +5,12 @@ import { BASEURL } from '../config';
 import { pages } from '../hooks/hook';
 import { validateFirstLocator } from '../utils/validations';
 import {
-  botonSignupLogin,
-  nombre,
-  apellido,
-  tempMail,
-  performanceText,
-  password,
-  diaNac,
-  mesNac,
-  yearNac,
-  direccion,
-  pais,
-  estado,
-  ciudad,
-  cp,
-  celular,
-  numTarj,
-  cvcTarj,
-  subject,
-  mensaje
+  botonSignupLogin, nombre, apellido, tempMail, performanceText, password, diaNac, mesNac, yearNac, direccion, pais, estado,
+  ciudad, cp, celular, numTarj, cvcTarj, subject, mensaje
 } from '../locators/exampleLocators';
 import {
-  getByPlaceholderAndClickIt,
-  getByPlaceholderAndFillIt,
-  getByText,
-  getElementByRoleAndClickIt,
-  getTextboxAndFill,
-  getByLocator,
-  getAltByText,
-  getByTestId,
-  getByLocatorAndFillIt
+  getByPlaceholderAndClickIt, getByPlaceholderAndFillIt, getByText, getElementByRoleAndClickIt, getTextboxAndFill,
+  getByLocator, getAltByText, getByTestId, getByLocatorAndFillIt
 } from '../utils/interactions';
 
 Given("El usuario esta en la pagina de automationexercise", async () => {
