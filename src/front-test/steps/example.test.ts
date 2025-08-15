@@ -75,7 +75,7 @@ When('El usuario ingresa sus datos', async function () {
     await getByLocatorAndFillIt(page, '[data-qa="first_name"]', nombre);
     await getByLocatorAndFillIt(page, '[data-qa="last_name"]', apellido);
     await getByLocatorAndFillIt(page, '[data-qa="address"]', direccion);
-    await page.locator('#country').selectOption(pais);
+    await page.locator('[data-qa="country"]').selectOption(pais);
     await getByLocatorAndFillIt(page, '[data-qa="state"]', estado);
     await getByLocatorAndFillIt(page, '[data-qa="city"]', ciudad);
     await getByLocatorAndFillIt(page, '[data-qa="zipcode"]', cp);
