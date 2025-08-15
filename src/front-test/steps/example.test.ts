@@ -28,7 +28,7 @@ When('El usuario clickea en el boton de signupLogin', async function () {
 
 When('El usuario clickea en el campo nombre e inserta el nombre a utilizar', async function () {
   for (const page of pages) {
-    await page.locator('[data-qa="signup-name"]').fill(tempMail)
+    await page.locator('[data-qa="signup-name"]').fill(nombre)
   }
 });
 
